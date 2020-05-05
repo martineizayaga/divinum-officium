@@ -194,7 +194,7 @@ $daycolor =
     ($commune =~ /(C1[0-9])/) ? "blue"
   : ($dayname[1] =~ /(Cathedra|oann|Pasch|Confessor|Ascensio|Vigilia Nativitatis|Cena)/i) ? "black"
   : ($dayname[1] =~ /(Pentecosten|Epiphaniam|post octavam)/i) ? "green"
-  : ($dayname[1] =~ /(Pentecostes|Martyr|Innocentium|Cruc|Apostol)/i) ? "red"
+  : ($dayname[1] =~ /(Pentecostes|Evangel|Martyr|Innocentium|Cruc|Apostol)/i) ? "red"
   : ($dayname[1] =~ /(Defunctorum|Parasceve|Morte)/i) ? "grey"
   : ($dayname[1] =~ /(Quattuor|Vigilia|Passionis|Quadragesima|Hebdomadæ Sanctæ|Septuagesim|Sexagesim|Quinquagesim|Ciner|Adventus)/i) ? "purple"
   : "black";
@@ -224,6 +224,12 @@ for ($i = 0; $i < 10; $i++) { $hcolor[$i] = 'blue'; }
 htmlHead($title, 2);
 print << "PrintTag";
 <BODY VLINK=$visitedlink LINK=$link BACKGROUND="$htmlurl/horasbg.jpg" onload="startup();">
+<script>
+// https redirect
+if (location.protocol !== 'https:' && (location.hostname == "divinumofficium.com" || location.hostname == "www.divinumofficium.com")) {
+    location.replace(`https:\${location.href.substring(location.protocol.length)}`);
+}
+</script>
 <FORM ACTION="$officium" METHOD=post TARGET=_self>
 PrintTag
 
